@@ -1,0 +1,3 @@
+package vn.somehouse;
+import org.springframework.context.annotation.Configuration;import org.springframework.web.servlet.config.annotation.*;import org.springframework.beans.factory.annotation.Value;import java.nio.file.Path;
+@Configuration public class WebConfig implements WebMvcConfigurer {final String uploads;WebConfig(@Value("${app.upload-dir}")String p){uploads=Path.of(p).toAbsolutePath().normalize().toUri().toString();}public void addResourceHandlers(ResourceHandlerRegistry r){r.addResourceHandler("/uploads/**").addResourceLocations(uploads.endsWith("/")?uploads:uploads+"/").setCachePeriod(3600);}}

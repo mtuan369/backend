@@ -1,0 +1,3 @@
+package vn.somehouse;
+import org.springframework.http.HttpStatus;
+public class ApiException extends RuntimeException {public final HttpStatus status;public final String code;public ApiException(HttpStatus s,String c,String message){super(message);status=s;code=c;}public static ApiException missing(){return new ApiException(HttpStatus.NOT_FOUND,"NOT_FOUND","Không tìm thấy dữ liệu.");}public static ApiException invalid(String m){return new ApiException(HttpStatus.BAD_REQUEST,"VALIDATION_ERROR",m);}public static ApiException conflict(){return new ApiException(HttpStatus.CONFLICT,"VERSION_CONFLICT","Dữ liệu đã thay đổi. Vui lòng tải lại trước khi lưu.");}}

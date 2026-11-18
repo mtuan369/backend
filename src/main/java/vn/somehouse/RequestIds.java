@@ -1,0 +1,3 @@
+package vn.somehouse;
+import jakarta.servlet.*;import jakarta.servlet.http.*;import org.springframework.stereotype.Component;import org.springframework.web.filter.OncePerRequestFilter;import java.io.IOException;import java.util.UUID;
+@org.springframework.core.annotation.Order(org.springframework.core.Ordered.HIGHEST_PRECEDENCE) @Component public class RequestIds extends OncePerRequestFilter {protected void doFilterInternal(HttpServletRequest req,HttpServletResponse res,FilterChain chain)throws ServletException,IOException{String id=UUID.randomUUID().toString();req.setAttribute("requestId",id);res.setHeader("X-Request-ID",id);chain.doFilter(req,res);}}
